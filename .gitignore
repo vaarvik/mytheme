@@ -1,0 +1,8 @@
+#these files will not be uploaded to GitHub
+node_modules
+build
+npm-debug.log
+.env
+.DS_Store
+wp-content/uploads
+wp-config.php
