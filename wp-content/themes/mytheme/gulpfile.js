@@ -20,11 +20,14 @@
 */
 
 const gulp = require('gulp');
+const babel = require('gulp-babel');
 const terser = require('gulp-terser');
 const rename = require('gulp-rename');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
+var gcmq = require('gulp-group-css-media-queries');
+const cleanCSS = require('gulp-clean-css');
 const browserSync = require('browser-sync').create();
 const { config } = require('./gulp-config');
 
@@ -39,6 +42,10 @@ gulp.task( "scripts", function( done ) {
     gulp.src(`${assetsUri}/js/customs/*.js`)
         //make all into one single min-file
         .pipe(concat('customs.js'))
+        //babelize scripts
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
         //minimize scripts
 		.pipe(terser())
         //add .min to the file name
@@ -55,6 +62,10 @@ gulp.task( "scripts", function( done ) {
         //set the location for where the file should be stored
 		.pipe(gulp.dest(`${assetsUri}/js`));
     gulp.src(`${assetsUri}/js/specifics/*.js`)
+        //babelize scripts
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
         //minimize scripts
 		.pipe(terser())
         //add .min to the file name
@@ -70,8 +81,15 @@ sass.compiler = require('node-sass');
 
 gulp.task('styles', function( done ) {
     gulp.src(`${assetsUri}/styles/scss/style.scss`)
-        .pipe(sass.sync({outputStyle: 'compressed'}).on('error', sass.logError))
+        //convert to sass
+        .pipe(sass.sync().on('error', sass.logError))
+        //group css media queries
+        .pipe(gcmq())
+        //compress css
+        .pipe(cleanCSS({debug: true}))
+        //prefix css
         .pipe(autoprefixer('last 2 versions'))
+        //set the location for where the file should be stored
         .pipe(gulp.dest(`${assetsUri}/styles`));
 
     done();
