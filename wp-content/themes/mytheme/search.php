@@ -59,7 +59,7 @@ get_header();
 					<h1 class="search-header__title"><?php echo wp_kses_post( $success_title ); //sanitize the search query before it shown in the browser ?></h1>
 				<?php
 				} elseif ( $fail_title ) { ?>
-					<h1 class="search-header__title search-header__title--fail"><?php echo wp_kses_post( wpautop( $fail_title ) ); ?></h1>
+					<h1 class="search-header__title fail"><?php echo wp_kses_post( wpautop( $fail_title ) ); ?></h1>
 				<?php } ?>
 
 			</div>
@@ -87,7 +87,7 @@ get_header();
 	} else {
 		?>
 
-		<div class="section--narrow">
+		<div class="section narrow">
 
 			<?php
 			get_search_form(

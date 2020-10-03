@@ -26,9 +26,9 @@ get_header();
 		);
 		?>
 
-	</div><!-- .section-inner -->
+	</div>
 
-</main><!-- #site-content -->
+</main>
 
 <?php get_template_part( 'template-parts/footer-menus-widgets' ); ?>
 

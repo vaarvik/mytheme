@@ -22,7 +22,7 @@ $aria_label = ! empty( $args['label'] ) ? 'aria-label="' . esc_attr( $args['labe
 <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url( '/' ) ); ?> <?php echo $aria_label; ?>">
 	<label for="<?php echo esc_attr( $this_form_id ); ?>">
 		<span class="search-form__label"><?php _e( 'Search for:', 'mytheme' ); // phpcs:ignore: WordPress.Security.EscapeOutput.UnsafePrintingFunction -- core trusts translations ?></span>
-		<input type="search" id="<?php echo esc_attr( $this_form_id ); ?>" class="field field--input" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'mytheme' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
+		<input type="search" id="<?php echo esc_attr( $this_form_id ); ?>" class="field input" placeholder="<?php echo esc_attr_x( 'Search &hellip;', 'placeholder', 'mytheme' ); ?>" value="<?php echo get_search_query(); ?>" name="s" />
 	</label>
-	<input type="submit" class="btn btn--search" value="<?php echo esc_attr_x( 'Search', 'submit button', 'mytheme' ); ?>" />
+	<input type="submit" class="btn search" value="<?php echo esc_attr_x( 'Search', 'submit button', 'mytheme' ); ?>" />
 </form>

@@ -43,7 +43,7 @@
 
 				?>
 
-				<button class="btn btn--search" >
+				<button class="btn search" >
 						<span class="btn__icon">
 							<!-- SVG goes here -->
 						</span>
