@@ -35,6 +35,8 @@ const { readdirSync } = require('fs');
 
 //assets folder path
 const assetsUri = config.assetsUri.replace(/\/\s*$/, "");
+const { gutenBlocksName } = config;
+
 
 /**
  * Get Directories
@@ -77,31 +79,37 @@ gulp.task( "scripts", function( done ) {
         .pipe(babel({
             presets: ['@babel/env']
         }))
+        //set the location for where the unminimized file should be stored
+		.pipe(gulp.dest(`${assetsUri}/js`))
         //minimize scripts
 		.pipe(terser())
         //add .min to the file name
         .pipe(rename({ suffix: '.min' }))
-        //set the location for where the file should be stored
+        //set the location for where the minimized file should be stored
 		.pipe(gulp.dest(`${assetsUri}/js`));
     gulp.src(`${assetsUri}/js/vendors/*.js`)
         //make all into one single min-file
         .pipe(concat('vendors.js'))
+        //set the location for where the unminimized file should be stored
+		.pipe(gulp.dest(`${assetsUri}/js`))
         //minimize scripts
         .pipe(terser())
         //add .min to the file name
         .pipe(rename({ suffix: '.min' }))
-        //set the location for where the file should be stored
+        //set the location for where the minimized file should be stored
 		.pipe(gulp.dest(`${assetsUri}/js`));
     gulp.src(`${assetsUri}/js/specifics/*.js`)
         //babelize scripts
         .pipe(babel({
             presets: ['@babel/env']
         }))
+        //set the location for where the unminimized file should be stored
+		.pipe(gulp.dest(`${assetsUri}/js`))
         //minimize scripts
 		.pipe(terser())
         //add .min to the file name
         .pipe(rename({ suffix: '.min' }))
-        //set the location for where the file should be stored
+        //set the location for where the minimized file should be stored
         .pipe(gulp.dest(`${assetsUri}/js`));
 
     done();
@@ -136,9 +144,13 @@ gulp.task('styles', function( done ) {
             //all php files at root
             './*.php',
         ]))
+        //set the location for where the unminimized file should be stored
+        .pipe(gulp.dest(`${assetsUri}/styles`))
         //compress css and mesh equal rules
         .pipe(cleanCSS({ level: { 2: { restructureRules: true } } }))
-        //set the location for where the file should be stored
+        //add .min to the file name
+        .pipe(rename({ suffix: '.min' }))
+        //set the location for where the minimized file should be stored
         .pipe(gulp.dest(`${assetsUri}/styles`));
 
     gulp.src(`${assetsUri}/styles/scss/editor.scss`)
@@ -156,7 +168,7 @@ gulp.task('styles', function( done ) {
             //the WP block editor js
             `../../../wp-includes/js/dist/block-editor.js`,
             //all js files in js warwick plugin dist folder
-            `../../plugins/warwick-blocks/dist/*.js`,
+            `../../plugins/${gutenBlocksName}/dist/*.js`,
             //all js files in js assets folder
             `${assetsUri}/js/*/**/*.js`,
             //all html files from root
@@ -168,9 +180,13 @@ gulp.task('styles', function( done ) {
             //all php files at root
             './*.php',
         ]))
+        //set the location for where the unminimized file should be stored
+        .pipe(gulp.dest(`${assetsUri}/styles`))
         //compress css and mesh equal rules
         .pipe(cleanCSS({ level: { 2: { restructureRules: true } } }))
-        //set the location for where the file should be stored
+        //add .min to the file name
+        .pipe(rename({ suffix: '.min' }))
+        //set the location for where the minimized file should be stored
         .pipe(gulp.dest(`${assetsUri}/styles`));
 
     done();
@@ -215,6 +231,23 @@ gulp.task( "watch", function( done ) {
         './*.php',
     ],
     gulp.series( fileHandling, "reload" ) );
+
+    process.stdout.write(`
+    Gutenberg blocks plugin name: "${gutenBlocksName}"
+    ---------------------------------------------------------------------
+    The name of your Gutenberg blocks folder is: ${gutenBlocksName}.
+    This can be changed in the gulp config file.
+    You can ignore this message if you're not using Gutenberg blocks.
+    ---------------------------------------------------------------------
+    \n`);
+
+    process.stdout.write(`
+    Asset folder location: "/${assetsUri}"
+    ---------------------------------------------------------------------
+    Your asset folder's location is relative from the gulpfile.js.
+    It is located at: "/${assetsUri}".
+    ---------------------------------------------------------------------
+    \n`);
 
     done();
 } );

@@ -17,6 +17,9 @@
 // Constants
 define( "THEME_VERSION", wp_get_theme()->get( 'Version' ) );
 
+// General functions
+require get_template_directory() . '/inc/helper-functions.php';
+
 // Add theme support
 require get_template_directory() . '/inc/theme-support.php';
 
@@ -31,9 +34,6 @@ require get_template_directory() . '/inc/menus.php';
 
 // Register widgets
 require get_template_directory() . '/inc/widgets.php';
-
-// Functions related to IDs
-require get_template_directory() . '/inc/id-functions.php';
 
 // Custom content links
 require get_template_directory() . '/inc/content-links.php';
