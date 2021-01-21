@@ -121,6 +121,42 @@ gulp.task('styles', function( done ) {
         //remove unused css from the final css
         //scan these files to see if css is used
         .pipe(purify([
+            //the WP block block js
+            `../../../wp-includes/js/dist/block-library.js`,
+            //all js files in js warwick plugin dist folder
+            `../../plugins/warwick-blocks/dist/*.js`,
+            //all js files in js assets folder
+            `${assetsUri}/js/*/**/*.js`,
+            //all html files from root
+            ...to("./$dir/**/*.html"),
+            //all html files at root
+            './*.html',
+            //all php files from root
+            ...to("./$dir/**/*.php"),
+            //all php files at root
+            './*.php',
+        ]))
+        //compress css and mesh equal rules
+        .pipe(cleanCSS({ level: { 2: { restructureRules: true } } }))
+        //set the location for where the file should be stored
+        .pipe(gulp.dest(`${assetsUri}/styles`));
+
+    gulp.src(`${assetsUri}/styles/scss/editor.scss`)
+        //convert to sass
+        .pipe(sass.sync().on('error', sass.logError))
+        //group css media queries
+        .pipe(gcmq())
+        //prefix css
+        .pipe(autoprefixer('last 2 versions'))
+        //remove unused css from the final css
+        //scan these files to see if css is used
+        .pipe(purify([
+            //the WP block block js
+            `../../../wp-includes/js/dist/block-library.js`,
+            //the WP block editor js
+            `../../../wp-includes/js/dist/block-editor.js`,
+            //all js files in js warwick plugin dist folder
+            `../../plugins/warwick-blocks/dist/*.js`,
             //all js files in js assets folder
             `${assetsUri}/js/*/**/*.js`,
             //all html files from root

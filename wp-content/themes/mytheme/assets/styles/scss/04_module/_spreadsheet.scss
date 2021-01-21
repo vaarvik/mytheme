@@ -22,17 +22,17 @@
 .spreadsheet {
 	border-collapse: collapse; //Removes spacing in table
 	border-style: hidden; //Removes all the outside borders of the existing table
-	margin: $s-spacing auto;
+	margin: 8px auto;
 }
 
 //Elements
 .spreadsheet__cell { //td
-	padding: $vb-spacing;
-	border: 2px solid $secondary-color;
+	padding: 48px;
+	border: 2px solid $blue1;
 
 	//Element modifiers
 	&.header { //th
 		text-align: inherit;
-		border: 3px solid $secondary-color;
+		border: 3px solid $blue1;
 	}
 }

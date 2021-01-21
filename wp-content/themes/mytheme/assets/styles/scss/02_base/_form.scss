@@ -16,6 +16,22 @@
  * It doesn’t include any class or ID selectors. It is defining the default styling for how that element should look in all occurrences on the page.
 */
 
+
+/**
+ * =========================
+ *    || General
+ * =========================
+ */
+
+input, option, select, textarea, button  {
+	font-family: inherit;
+	@include font-size(14px);
+}
+
+legend {
+	font-family: inherit;
+	font-weight: inherit;
+}
 /**
  * =========================
  *    || Form Wrappers
@@ -23,7 +39,7 @@
  */
 
 fieldset {
-	padding: $s-spacing;
+	padding: 8px;
 	margin: 0;
 	border: 2px solid $black;
 }
@@ -36,13 +52,13 @@ fieldset {
 
 input {
 	vertical-align: middle;
-	padding: $vs-spacing;
+	padding: 4px;
 	border: 0;
 	border-bottom: 1px solid $black;
 }
 
 textarea {
-	padding: $s-spacing;
+	padding: 8px;
 	border: 1px solid $black;
 }
 
@@ -53,11 +69,12 @@ textarea {
  */
 
 button, input[type="button"], input[type="submit"], input[type="reset"] {
-	padding: $ms-spacing $m-spacing;
+	padding: 16px 24px;
 	border: 0;
-	background-color: $primary-color;
+	background-color: $blue;
 	color: $white;
 	cursor: pointer;
+	overflow: visible;
 }
 
 button[disabled],

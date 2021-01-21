@@ -20,22 +20,22 @@
  */
 
 .quote {
-	font-size: $mb-font-size;
-	background-color: $primary-color;
+	@include font-size(24px);
+	background-color: $blue;
 	color: $white;
-	padding: $vs-spacing;
+	padding: 4px;
 	margin: 0;
 	&:before {
 		content: "\"";
-		font-size: calc( #{$b-font-size} * 5 );
+		@include font-size(160px);
 		float: right;
 		vertical-align: text-top;
-		margin-top: calc( #{$b-font-size} * -1 );
+		margin-top: calc( 32px * -1 );
 		position: relative;
 	}
 }
 
 //Elements
 .quote__cite {
-	font-size: $m-font-size;
+	@include font-size(16px);
 }

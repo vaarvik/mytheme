@@ -19,8 +19,8 @@
 
  .img {
 	width: auto;
+	height: 100%;
 	&.bg {
-		height: 100%;
 		overflow: hidden;
 		background-size: cover;
 		background-repeat: no-repeat;

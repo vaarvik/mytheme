@@ -24,7 +24,7 @@
  */
 
 body {
-	font-family: $primary-font;
+	font-family: $blue;
 	color: $black;
 }
 
@@ -35,55 +35,80 @@ body {
  */
 
 h1, h2, h3, h4, h5, h6, p, a, blockquote, cite, pre, label, figcaption  {
-	margin: $s-spacing 0;
 	font-weight: inherit;
 	word-break: break-word;
 }
 
-h1, h2, h4 {
-	font-family: $secondary-font;
+h1, h2, h3, h4, h5, h6{
+	font-family: $font-headings;
+	margin: 8px initial;
+	+ p {
+		margin-top: 0;
+	}
+}
+
+h1, h2, h4, h6 {
+	font-weight: bold;
+}
+
+h2, h4 {
+	letter-spacing: .5px;
+	font-family: $blue1;
 }
 
 h1 {
-	font-size: $vb-font-size;
-	font-weight: bold;
+	@include font-size(40px);
+	@include tablet-p-up {
+		@include font-size(48px);
+	}
 }
 
 h2 {
-	font-size: $b-font-size;
-	font-weight: bold;
+	@include font-size(24px);
+	@include tablet-p-up {
+		@include font-size(32px);
+	}
 }
 
 h3 {
-	font-size: $b-font-size;
+	@include font-size(32px);
 }
 
 h4 {
-	font-size: $mb-font-size;
-	font-weight: bold;
+	@include font-size(24px);
 }
 
 h5 {
-	font-size: $mb-font-size;
+	@include font-size(24px);
 }
 
 h6 {
-	font-size: $m-font-size;
-	font-weight: bold;
+	@include font-size(16px);
+	margin-bottom: 4px;
 }
 
-p {
+a, blockquote, cite, pre, label, figcaption  {
+	margin: 8px 0;
+}
 
+
+p {
+	margin-bottom: 8px initial;
 }
 
 a {
-	color: $secondary-color;
-	text-decoration: underline;
+	color: $blue1;
+	text-decoration: none;
 	cursor: pointer;
+	transition: .1s;
+	&:hover{
+		color: $blue1;
+		text-decoration: underline;
+	}
 }
 
 small, sub, sup {
-	font-size: $s-font-size;
+	@include font-size(12px);
 }
 
 sup {
@@ -91,8 +116,8 @@ sup {
 }
 
 mark {
-	background-color: $secondary-color;
-    color: $primary-color;
+	background-color: $blue1;
+    color: $blue;
 }
 
 /**
@@ -102,7 +127,7 @@ mark {
  */
 
 figcaption {
-	font-size: $ms-font-size;
+	@include font-size(14px);
 }
 
 /**
@@ -113,20 +138,4 @@ figcaption {
 
 dl, ol, ul, dt, dd, li, tr, th, caption {
 	font-family: inherit;
-}
-
-/**
- * =========================
- *    || Form tags
- * =========================
- */
-
-input, option, select, textarea, button  {
-	font-family: inherit;
-	font-size: $ms-font-size;
-}
-
-legend {
-	font-family: inherit;
-	font-weight: inherit;
 }

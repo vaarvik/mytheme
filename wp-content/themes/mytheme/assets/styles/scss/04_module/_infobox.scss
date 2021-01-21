@@ -21,13 +21,11 @@
  */
 
 .infobox {
-	max-width: 250px;
-	background-color: $primary-color;
 	color: $white;
-	padding: $s-spacing;
-	@include phone-portrait() {
-		background-color: $white;
-		width: 100%;
-		max-width: 100%;
+	padding: 8px;
+	width: 100%;
+	max-width: 100%;
+	@include tablet-p-up {
+		max-width: 250px;
 	}
 }

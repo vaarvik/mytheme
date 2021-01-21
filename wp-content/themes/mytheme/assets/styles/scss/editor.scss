@@ -1,15 +1,15 @@
 /**
  *
- * ███████╗████████╗██╗   ██╗██╗     ███████╗
- * ██╔════╝╚══██╔══╝╚██╗ ██╔╝██║     ██╔════╝
- * ███████╗   ██║    ╚████╔╝ ██║     █████╗
- * ╚════██║   ██║     ╚██╔╝  ██║     ██╔══╝
- * ███████║   ██║      ██║   ███████╗███████╗
- * ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚══════╝
+ * ███████╗██████╗ ██╗████████╗ ██████╗ ██████╗
+ * ██╔════╝██╔══██╗██║╚══██╔══╝██╔═══██╗██╔══██╗
+ * █████╗  ██║  ██║██║   ██║   ██║   ██║██████╔╝
+ * ██╔══╝  ██║  ██║██║   ██║   ██║   ██║██╔══██╗
+ * ███████╗██████╔╝██║   ██║   ╚██████╔╝██║  ██║
+ * ╚══════╝╚═════╝ ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
  *
  *
  * This sheet contains:
- * * All the SASS files that is inside the scss folder
+ * * All the SASS files that should be included in the editor view
  *
  * The file/folder structure follows the basic guidelines of SMACSS. In addition to the default categories there has also been added Global (storing SCSS variables) and Utilities (storing general helper classes).
 
@@ -27,7 +27,6 @@ However with some modifications this is the categories for this project:
  * Global
  * Base
  * Layout
- * Utility
  * Module
  * State
  * Theme
@@ -77,12 +76,17 @@ Finally, Theme rules are similar to state rules in that they describe how module
  * =========================
  */
 
-@import '02_base/reset.scss';
-@import '02_base/containers.scss';
-@import '02_base/listings.scss';
-@import '02_base/form.scss';
-@import '02_base/media.scss';
-@import '02_base/typography.scss';
+@import '02_base/utilities.scss';
+.edit-post-visual-editor {
+	@import '02_base/reset.scss';
+	@import '02_base/containers.scss';
+	// @import '02_base/listings.scss';
+	// @import '02_base/form.scss';
+	@import '02_base/media.scss';
+	@import '02_base/typography.scss';
+}
+
+
 
 /**
  * =========================
@@ -90,14 +94,7 @@ Finally, Theme rules are similar to state rules in that they describe how module
  * =========================
  */
 
-@import '03_layout/sites.scss';
-@import '03_layout/site-header.scss';
-@import '03_layout/site-footer.scss';
-@import '03_layout/site-content.scss';
-@import '03_layout/home-content.scss';
-@import '03_layout/singular-content.scss';
-@import '03_layout/archive-content.scss';
-@import '03_layout/entry.scss';
+ /* NONE */
 
 /**
  * =========================
@@ -113,8 +110,39 @@ Finally, Theme rules are similar to state rules in that they describe how module
 @import '04_module/section.scss';
 @import '04_module/quote.scss';
 
-// ----- Blocks ----- //
-@import '04_module/block_test.scss';
+.editor-styles-wrapper {
+	padding-left: unset !important;
+	padding-right: unset !important;
+}
+
+.block-editor-block-list__block[data-align="wide"], .wp-block[data-align="wide"]{
+	width: $wide-max-width;
+	max-width: 100%;
+}
+
+.block-editor-block-list__block[data-align="full"]
+.wp-block[data-align="full"],
+.block-editor-block-list__block[data-align="wide"],
+.wp-block[data-align="wide"]{
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.block-editor-block-list__block[data-align="full"]{
+	max-width: initial;
+}
+
+.wp-block[data-align="full"]{
+	width: 100%;
+}
+
+.alignwide, .alignfull{
+	max-width: 100%;
+}
+
+
+//blocks
+@import '04_module/_block_test.scss';
 
  /**
  * =========================

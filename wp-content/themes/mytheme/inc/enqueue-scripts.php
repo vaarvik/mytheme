@@ -4,9 +4,7 @@
  */
 function mytheme_register_scripts() {
 
-	$theme_version = wp_get_theme()->get( 'Version' );
-
-	wp_enqueue_script( 'mytheme-js', get_template_directory_uri() . '/assets/js/index.js', array(), $theme_version, false );
+	wp_enqueue_script( 'mytheme-js', get_template_directory_uri() . '/assets/js/index.js', array(), THEME_VERSION, false );
 
 }
 
@@ -29,4 +27,5 @@ function mytheme_skip_link_focus_fix() {
 	</script>
 	<?php
 }
+
 add_action( 'wp_print_footer_scripts', 'mytheme_skip_link_focus_fix' );

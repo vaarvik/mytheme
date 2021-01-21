@@ -14,6 +14,9 @@
  * Include required files.
  */
 
+// Constants
+define( "THEME_VERSION", wp_get_theme()->get( 'Version' ) );
+
 // Add theme support
 require get_template_directory() . '/inc/theme-support.php';
 
